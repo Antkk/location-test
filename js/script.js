@@ -1,9 +1,11 @@
 $(document).ready(function () {
   var longitudediv = jQuery('.longitude');
   var lattitudediv = jQuery('.lattitude');
+  var statusspan = jQuery('.status');
 
   var latitude;
   var longitude;
+  var counter = 0;
 
   if (navigator.geolocation) {
       // Browser supports it, we're good to go!
@@ -31,6 +33,9 @@ $(document).ready(function () {
 
       longitudediv.html('Longitude: '+longitude);
       lattitudediv.html('Latitude: '+latitude);
+
+      counter++;
+      statusspan.html('updated ' + counter + ' times');
 
       window.setTimeout(updateLocation, 1000);
   }
