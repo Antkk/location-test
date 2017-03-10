@@ -1,7 +1,4 @@
 $(document).ready(function () {
-  //your code here
-
-  var button = jQuery('.button');
   var longitudediv = jQuery('.longitude');
   var lattitudediv = jQuery('.lattitude');
 
@@ -14,10 +11,12 @@ $(document).ready(function () {
     alert('Sorry your browser doesn\'t support the Geolocation API');
   }
 
-  button.click(function(e) {
-      e.preventDefault();
-      navigator.geolocation.getCurrentPosition(exportPosition, errorPosition);
-  });
+  updateLocation();
+
+  function updateLocation() {
+    navigator.geolocation.getCurrentPosition(exportPosition, errorPosition);
+  }
+
 
   function errorPosition() {
     alert('Sorry couldn\'t find your location');
@@ -32,5 +31,7 @@ $(document).ready(function () {
 
       longitudediv.html('Longitude: '+longitude);
       lattitudediv.html('Latitude: '+latitude);
+
+      window.setTimeout(updateLocation, 1000);
   }
 });
