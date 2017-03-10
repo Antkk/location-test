@@ -1,10 +1,9 @@
 $(document).ready(function () {
   var longitudediv = jQuery('.longitude');
   var lattitudediv = jQuery('.lattitude');
+  var accuracyspan = jQuery('.accuracy');
   var statusspan = jQuery('.status');
 
-  var latitude;
-  var longitude;
   var counter = 0;
 
   if (navigator.geolocation) {
@@ -28,11 +27,13 @@ $(document).ready(function () {
   function exportPosition(position) {
 
       // Get the geolocation properties and set them as variables
-      latitude = position.coords.latitude;
-      longitude  = position.coords.longitude;
+      var latitude = position.coords.latitude;
+      var longitude  = position.coords.longitude;
+      var accuracy  = position.coords.accuracy;
 
       longitudediv.html('Longitude: '+longitude);
       lattitudediv.html('Latitude: '+latitude);
+      accuracyspan.html('Accuracy: '+accuracy);
 
       counter++;
       statusspan.html('updated ' + counter + ' times');
